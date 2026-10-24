@@ -67,3 +67,8 @@ Thumbs.db
 !.gitignore
 !.nvmrc
 !.phpcs.xml.dist
+# Next.js
+/.next
+/out
+next-env.d.ts
+*.tsbuildinfo
