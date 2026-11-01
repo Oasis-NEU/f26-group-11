@@ -5,6 +5,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 KhouryConnect's PostgreSQL schema, local setup, and verification commands are in
 [docs/database.md](docs/database.md). The migration preserves the 11 Airtable tables,
 including comments, course offerings, enrollments, and student profiles.
+The hosted project, verified endpoints, and deployment commands are documented in
+[docs/supabase.md](docs/supabase.md). FastAPI setup and response contracts are in
+[api/README.md](api/README.md).
 
 ## Getting Started
 

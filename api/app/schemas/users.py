@@ -1,13 +1,16 @@
-from typing import Literal
 from uuid import UUID
 
 from pydantic import BaseModel
 
-Role = Literal["student", "faculty", "admin"]
-
 
 class UserOut(BaseModel):
-    id: UUID
+    user_id: UUID
     email: str
-    display_name: str
-    role: Role
+    first_name: str | None = None
+    last_name: str | None = None
+    year: str | None = None
+    major: str | None = None
+    minor: str | None = None
+    display_name: str | None = None
+    bio: str | None = None
+    avatar_url: str | None = None

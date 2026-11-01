@@ -80,6 +80,8 @@ Thumbs.db
 # Next.js
 /.next
 /.local/
+/supabase/.temp/
+/supabase/.branches/
 /out
 next-env.d.ts
 *.tsbuildinfo

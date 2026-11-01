@@ -116,25 +116,32 @@ app_private.schema_migrations, and serializes concurrent runs with an advisory l
 Rerunning db:migrate skips applied files. Add a new timestamped migration for changes;
 do not edit an already-applied migration. No destructive reset command is provided.
 
+The requested SQL capitalization update is recognized through exact original and
+formatted checksum pairs. Existing local migration ledgers remain valid without
+rewriting their history; other edits to an applied SQL file are still rejected.
+
 db:test exercises the schema against a real PostgreSQL server: enrollment joins,
 duplicate rejection, invalid foreign keys, threaded comments, edit timestamps,
 post deletion cascades, and the absence of password columns. All fixtures roll back.
 db:status reports migration history and counts for the 11 application tables.
 
-## Supabase next
+## Hosted Supabase
 
-SQL files already use the Supabase migration directory and naming convention.
-On a **new hosted project**, initialize/link the CLI project and apply these files
-using the Supabase CLI; let its migration system manage hosted history. The local
-Node runner's private ledger is only for the standalone PostgreSQL workflow.
-See [Supabase's migration guide](https://supabase.com/docs/guides/deployment/database-migrations).
+The schema is now deployed to the existing **KhouryForum** project in the
+**oasis-group11** organization. See [hosted setup and verification](supabase.md).
+The initial migration's schema definitions are preserved. A separate migration,
+`20261101010000_supabase_auth_and_access.sql`, maps profiles to Supabase Auth,
+provisions email-account profiles, and grants public community reads and private
+self-profile access. The remaining nine tables deny browser/API access until their
+features have explicit authorization rules. No moderation functionality was added.
 
-All application tables have row-level security enabled with no API access policies
-yet. Local owner connections work, but browser/API roles cannot read or write rows.
-Before connecting the frontend, add Supabase Auth integration (including mapping
-users.user_id to auth.users.id), signup/profile creation, and the intended access policies.
-These are authentication/access rules, independent of moderation functionality.
-See [PostgreSQL row security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html).
+The Auth migration requires Supabase-managed `auth.users`, `auth.uid()`, and API
+roles. The standalone Node runner reports it as pending and skips it **without
+recording it** when Auth is absent. The native database remains useful for SQL
+development. `npm run db:test:auth` separately verifies both migrations with an
+Auth stub in an isolated temporary local database, which it removes afterward.
 
-The Next.js UI and existing Supabase client helpers have not been wired to this local
-database. No hosted Supabase resources were created during this migration.
+The Next.js homepage queries hosted communities through its typed Supabase client.
+FastAPI supports either direct PostgreSQL or the hosted Data API; see
+[API configuration and schema compatibility](../api/README.md). Hosting the
+database on Supabase does not deploy the Python service.
