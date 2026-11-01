@@ -116,6 +116,10 @@ app_private.schema_migrations, and serializes concurrent runs with an advisory l
 Rerunning db:migrate skips applied files. Add a new timestamped migration for changes;
 do not edit an already-applied migration. No destructive reset command is provided.
 
+The requested SQL capitalization update is recognized through exact original and
+formatted checksum pairs. Existing local migration ledgers remain valid without
+rewriting their history; other edits to an applied SQL file are still rejected.
+
 db:test exercises the schema against a real PostgreSQL server: enrollment joins,
 duplicate rejection, invalid foreign keys, threaded comments, edit timestamps,
 post deletion cascades, and the absence of password columns. All fixtures roll back.
@@ -125,7 +129,7 @@ db:status reports migration history and counts for the 11 application tables.
 
 The schema is now deployed to the existing **KhouryForum** project in the
 **oasis-group11** organization. See [hosted setup and verification](supabase.md).
-The initial migration above is unchanged. A separate migration,
+The initial migration's schema definitions are preserved. A separate migration,
 `20261101010000_supabase_auth_and_access.sql`, maps profiles to Supabase Auth,
 provisions email-account profiles, and grants public community reads and private
 self-profile access. The remaining nine tables deny browser/API access until their

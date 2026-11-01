@@ -116,6 +116,10 @@ after verifying the stored statements matched the source files. The hosted
 The standalone Node runner uses a separate `app_private.schema_migrations`
 ledger; do not use it to manage this hosted project.
 
+The later keyword/type capitalization change preserves the deployed definitions.
+It does not require reapplying SQL or changing hosted migration history. The
+standalone runner accepts only the recorded original/formatted checksum pairs.
+
 To refresh frontend types after a schema change:
 
 ```powershell

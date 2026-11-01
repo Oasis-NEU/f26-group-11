@@ -8,6 +8,19 @@ const tables = [
   'course_offerings', 'enrollments',
 ];
 
+// Exact before/after pairs for the requested SQL capitalization update.
+// Existing ledgers stay valid; any further file change still fails verification.
+const capitalizationChecksums = {
+  '20261101000000_create_khouryconnect.sql': {
+    original: '4bdd323dc7f0335637cad145a072e7d8f469b733719651af5d048a8c4233806e',
+    formatted: 'd7c7beddfd3f815aec8bb2e6322f2a6f2bcd3314fe0cacef51cc4000b20c832d',
+  },
+  '20261101010000_supabase_auth_and_access.sql': {
+    original: '1330168c96e6eacd18749ea9edbad8aa93e7ef5a6262d3b68fde6c45ffe144f5',
+    formatted: '197d7af4f99d0dbf871b6f0df72e4dd75ca572fcaae1b332e0fda4be30f64a41',
+  },
+};
+
 async function migrate(client) {
   // Session lock serializes concurrent runners, including initial ledger setup.
   await client.query('select pg_advisory_lock(20261101, 11)');
@@ -34,7 +47,11 @@ async function migrate(client) {
     const sql = (await readFile(new URL(name, directory), 'utf8')).replace(/\r\n/g, '\n');
     const checksum = createHash('sha256').update(sql).digest('hex');
     if (applied.has(name)) {
-      if (applied.get(name) !== checksum) {
+      const knownFormat = capitalizationChecksums[name];
+      const matchesCapitalizationUpdate = knownFormat
+        && applied.get(name) === knownFormat.original
+        && checksum === knownFormat.formatted;
+      if (applied.get(name) !== checksum && !matchesCapitalizationUpdate) {
         throw new Error(`Applied migration changed: ${name}. Add a new migration instead.`);
       }
       continue;
