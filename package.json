@@ -14,7 +14,10 @@
     "db:down": "docker compose --env-file .env.db down",
     "db:migrate": "node --env-file-if-exists=.env.db scripts/db.mjs migrate",
     "db:status": "node --env-file-if-exists=.env.db scripts/db.mjs status",
-    "db:test": "node --env-file-if-exists=.env.db --test tests/database.test.mjs"
+    "db:test": "node --env-file-if-exists=.env.db --test tests/database.test.mjs",
+    "db:test:auth": "node --env-file-if-exists=.env.db --test tests/supabase-auth.test.mjs",
+    "supabase": "supabase",
+    "supabase:check": "node --env-file-if-exists=.env.local --env-file-if-exists=api/.env scripts/supabase-check.mjs"
   },
   "dependencies": {
     "@supabase/server": "^1.9.2",
@@ -33,6 +36,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
+    "supabase": "2.122.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

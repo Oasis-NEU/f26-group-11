@@ -1,11 +1,12 @@
 from datetime import datetime
-from uuid import UUID
 
 from pydantic import BaseModel
 
 
 class CommunityOut(BaseModel):
-    community_id: UUID
+    community_id: int
+    course_code: str
+    course_name: str
     slug: str
-    name: str
-    course_id: UUID | None = None
+    description: str | None = None
+    created_at: datetime

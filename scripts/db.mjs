@@ -28,6 +28,7 @@ async function migrate(client) {
     if (!files.includes(name)) throw new Error(`Applied migration is missing locally: ${name}`);
   }
   let count = 0;
+  let skipped = 0;
   for (const name of files) {
     // Git may check out CRLF on Windows; line endings must not change checksums.
     const sql = (await readFile(new URL(name, directory), 'utf8')).replace(/\r\n/g, '\n');
@@ -37,6 +38,19 @@ async function migrate(client) {
         throw new Error(`Applied migration changed: ${name}. Add a new migration instead.`);
       }
       continue;
+    }
+    // The native PostgreSQL workflow has no Supabase-managed Auth schema.
+    // Never record a skipped migration: linking a real Supabase project must
+    // still apply its auth mapping and policies through the Supabase CLI.
+    if (sql.startsWith('-- requires: supabase-auth')) {
+      const { rows: prerequisites } = await client.query(
+        "select to_regclass('auth.users') is not null and to_regprocedure('auth.uid()') is not null as ready",
+      );
+      if (!prerequisites[0].ready) {
+        console.log(`Pending (requires Supabase Auth): ${name}`);
+        skipped++;
+        continue;
+      }
     }
     await client.query('begin');
     try {
@@ -53,7 +67,8 @@ async function migrate(client) {
       throw error;
     }
   }
-  console.log(count ? `${count} migration(s) applied.` : 'Database is up to date.');
+  console.log(count ? `${count} migration(s) applied.` : 'No standalone migrations to apply.');
+  if (skipped) console.log(`${skipped} Supabase-only migration(s) pending; not recorded as applied.`);
 }
 
 async function status(client) {
