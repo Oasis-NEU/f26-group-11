@@ -71,12 +71,15 @@ Thumbs.db
 !.dockerignore
 !.editorconfig
 !.env.example
+!.env.db.example
+!supabase/migrations/*.sql
 !.git-blame-ignore-revs
 !.gitignore
 !.nvmrc
 !.phpcs.xml.dist
 # Next.js
 /.next
+/.local/
 /out
 next-env.d.ts
 *.tsbuildinfo
