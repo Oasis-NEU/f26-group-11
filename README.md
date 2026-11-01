@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Database
+
+KhouryConnect's PostgreSQL schema, local setup, and verification commands are in
+[docs/database.md](docs/database.md). The migration preserves the 11 Airtable tables,
+including comments, course offerings, enrollments, and student profiles.
+
 ## Getting Started
 
 First, run the development server:

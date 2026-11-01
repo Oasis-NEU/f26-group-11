@@ -1,0 +1,528 @@
+{
+  "base_id": "appB9HVYaztkZkZuK",
+  "base_name": "KhouryConnect",
+  "export_date": "2026-11-01",
+  "note": "Schema-only export: all 11 tables contained zero records. Password placeholder fields were not exported as data.",
+  "tables": [
+    {
+      "id": "tblRvFE7Jfo7rQbzi",
+      "name": "users",
+      "description": "Student accounts and profiles. UUID stored as text; year enum values remain undefined. Authored comments and enrollments are linked from their respective tables. comments_schema_note preserves the original sketch placeholder.",
+      "primaryFieldId": "fldG1TSmNym4bLhyP",
+      "fields": [
+        {
+          "id": "fldG1TSmNym4bLhyP",
+          "name": "user_id",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fldKRy1TzoxBh4yXU",
+          "name": "email",
+          "type": "email"
+        },
+        {
+          "id": "fldOfrGl895xnj5bN",
+          "name": "pwd",
+          "type": "singleLineText",
+          "description": "Schema placeholder only; do not store real passwords. Use an authentication service."
+        },
+        {
+          "id": "fldc9F2lMfLBl4ICf",
+          "name": "first_name",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fldG8blnFMJDfhyyl",
+          "name": "last_name",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fldIGBZRTiZU7onsn",
+          "name": "year",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fld3s6HY811dKXa0O",
+          "name": "major",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fldiyEsMEdRsK2dg0",
+          "name": "minor",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fldaOwXl0cNeZzv0d",
+          "name": "comments_schema_note",
+          "type": "multilineText",
+          "description": "Legacy text placeholder from original sketch, preserved to retain any notes. Authored comments are now linked through the comments table."
+        },
+        {
+          "id": "fldfViTEiQr2mTuPW",
+          "name": "posts",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldffvGtR7BsnX7Ak",
+          "name": "post_votes",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldDN798xeJ0Qr0vL",
+          "name": "community_members",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldntr0WyeuQpF3sx",
+          "name": "joined",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldpUX40njSDFvoFP",
+          "name": "display_name",
+          "type": "singleLineText",
+          "description": "Name shown on the student's profile and discussions."
+        },
+        {
+          "id": "fld9QPEvC5cPpElLL",
+          "name": "bio",
+          "type": "multilineText",
+          "description": "Optional student introduction, interests, and background."
+        },
+        {
+          "id": "fldNBuxDmkgUyusOa",
+          "name": "avatar_url",
+          "type": "url",
+          "description": "Optional URL of the student's profile image."
+        },
+        {
+          "id": "fldn6Nlrc5ljYaZ7x",
+          "name": "comments",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldgaMwtftKCbZfsb",
+          "name": "enrollments",
+          "type": "multipleRecordLinks"
+        }
+      ],
+      "record_count": 0
+    },
+    {
+      "id": "tblk8FlnML9R9KwjJ",
+      "name": "communities",
+      "description": "Source requires unique course_code; enforce in application.",
+      "primaryFieldId": "flduxiDg45izBKD4t",
+      "fields": [
+        {
+          "id": "flduxiDg45izBKD4t",
+          "name": "community_id",
+          "type": "autoNumber"
+        },
+        {
+          "id": "fld0rKRsrElksU7pa",
+          "name": "course_code",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fldWRVKy3EbhjckUt",
+          "name": "course_name",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fldHiQdIpXqT9rZOT",
+          "name": "slug",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fldGocKwI44ZzsEZI",
+          "name": "description",
+          "type": "multilineText"
+        },
+        {
+          "id": "fld1CiEpmvzVCXdFD",
+          "name": "createdAt",
+          "type": "createdTime"
+        },
+        {
+          "id": "fldGbNUHUD3ujPxQ3",
+          "name": "posts",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fld7WUpyTdSR8I2u5",
+          "name": "community_members",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldSZtL3FXDBn7U5Y",
+          "name": "community_posts",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldZYbfzJewJppw19",
+          "name": "community_profs",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fld2F6bgLRoOcFAVm",
+          "name": "users",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "flduuLKrSa2MIro5w",
+          "name": "course_offerings",
+          "type": "multipleRecordLinks"
+        }
+      ],
+      "record_count": 0
+    },
+    {
+      "id": "tblQkLejA5mLM6GFK",
+      "name": "posts",
+      "description": "Imported from KhouryConnect schema sketch.",
+      "primaryFieldId": "fldfQYKoqqt82fOas",
+      "fields": [
+        {
+          "id": "fldfQYKoqqt82fOas",
+          "name": "post_id",
+          "type": "autoNumber"
+        },
+        {
+          "id": "fldzBGrGAcAoNwmbf",
+          "name": "title",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fldUzOqylmMZ6v8d7",
+          "name": "content",
+          "type": "multilineText"
+        },
+        {
+          "id": "fldCqrtq34fbfiJ3N",
+          "name": "createdAt",
+          "type": "createdTime"
+        },
+        {
+          "id": "fldStZmK5L42CoJ5o",
+          "name": "author",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldqpEamSP9DflPzs",
+          "name": "community",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldyC5BQBr3sfjtmQ",
+          "name": "post_votes",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldeYqzCfroL0MxRc",
+          "name": "community_posts",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldxps8XVgNZNcow1",
+          "name": "comments",
+          "type": "multipleRecordLinks"
+        }
+      ],
+      "record_count": 0
+    },
+    {
+      "id": "tblLkTflorEDpws2m",
+      "name": "post_votes",
+      "description": "Imported from KhouryConnect schema sketch.",
+      "primaryFieldId": "fldqWvUOqEpPh3vW3",
+      "fields": [
+        {
+          "id": "fldqWvUOqEpPh3vW3",
+          "name": "vote_id",
+          "type": "autoNumber"
+        },
+        {
+          "id": "flduyDy7WbG5FQ7qL",
+          "name": "createdAt",
+          "type": "createdTime"
+        },
+        {
+          "id": "fldgTEnYwTc8KCesP",
+          "name": "updatedAt",
+          "type": "lastModifiedTime"
+        },
+        {
+          "id": "fldbSp7fWCLQgAfQ1",
+          "name": "user_id",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldYb7LovOe1AGKqK",
+          "name": "post_id",
+          "type": "multipleRecordLinks"
+        }
+      ],
+      "record_count": 0
+    },
+    {
+      "id": "tblKvplx9Gn2DFSDp",
+      "name": "community_members",
+      "description": "Source post_id interpreted as community_id: arrow targets communities.",
+      "primaryFieldId": "fldQGC0pu2JUme4rr",
+      "fields": [
+        {
+          "id": "fldQGC0pu2JUme4rr",
+          "name": "membership_id",
+          "type": "autoNumber"
+        },
+        {
+          "id": "fld1PfFYAAHfBRYqW",
+          "name": "role",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fldbBQqY9mF2TCkhy",
+          "name": "joined_at",
+          "type": "dateTime"
+        },
+        {
+          "id": "flddL8vOPSl097fpD",
+          "name": "user_id",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldybVOjSME397v2T",
+          "name": "community_id",
+          "type": "multipleRecordLinks"
+        }
+      ],
+      "record_count": 0
+    },
+    {
+      "id": "tbljSMELgxRSnJkME",
+      "name": "community_posts",
+      "description": "Preserved alongside posts.community; application must keep these consistent.",
+      "primaryFieldId": "flddVVMBtzXuWRP1A",
+      "fields": [
+        {
+          "id": "flddVVMBtzXuWRP1A",
+          "name": "community_post_id",
+          "type": "autoNumber"
+        },
+        {
+          "id": "fldkceBAAfNQW1wQ3",
+          "name": "posted_at",
+          "type": "dateTime"
+        },
+        {
+          "id": "fldXgwcs9bReh5Wmu",
+          "name": "removed_at",
+          "type": "dateTime"
+        },
+        {
+          "id": "fldZkDFYrr6RRIJ58",
+          "name": "post_id",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fld3OFMTL934UmSh4",
+          "name": "community_id",
+          "type": "multipleRecordLinks"
+        }
+      ],
+      "record_count": 0
+    },
+    {
+      "id": "tbldlvD5KHK6WD7Ju",
+      "name": "professors",
+      "description": "Imported from KhouryConnect schema sketch.",
+      "primaryFieldId": "fldBKMy4jd1DIiu74",
+      "fields": [
+        {
+          "id": "fldBKMy4jd1DIiu74",
+          "name": "prof_id",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fld5djwqv0kiImOfj",
+          "name": "email",
+          "type": "email"
+        },
+        {
+          "id": "fldKwSOzpo9p0GVeA",
+          "name": "pwd",
+          "type": "singleLineText",
+          "description": "Schema placeholder only; do not store real passwords. Use an authentication service."
+        },
+        {
+          "id": "fldxpmaA3QRu4xmA7",
+          "name": "first_name",
+          "type": "singleLineText"
+        },
+        {
+          "id": "flddoGfo9dgpzxj5C",
+          "name": "last_name",
+          "type": "singleLineText"
+        },
+        {
+          "id": "fldjTcZI28z0FEVdH",
+          "name": "community_profs",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldvkYZOyM8z7mmNz",
+          "name": "course_offerings",
+          "type": "multipleRecordLinks"
+        }
+      ],
+      "record_count": 0
+    },
+    {
+      "id": "tblZk91ztriaRRDEt",
+      "name": "community_profs",
+      "description": "Imported from KhouryConnect schema sketch.",
+      "primaryFieldId": "fldDEw10PjVBkiG0q",
+      "fields": [
+        {
+          "id": "fldDEw10PjVBkiG0q",
+          "name": "community_prof_id",
+          "type": "autoNumber"
+        },
+        {
+          "id": "fldKo0T5ZfK1Mj13w",
+          "name": "community_id",
+          "type": "multipleRecordLinks"
+        },
+        {
+          "id": "fldf3fzUqfcsvJ70r",
+          "name": "prof_id",
+          "type": "multipleRecordLinks"
+        }
+      ],
+      "record_count": 0
+    },
+    {
+      "id": "tblMJdrZLSZAeEyYs",
+      "name": "comments",
+      "description": "Discussion comments and nested replies. Each comment belongs to one post and author; parent_comment_id is optional. Application must enforce that parent replies belong to the same post and prevent reply cycles.",
+      "primaryFieldId": "fldw8vmvOJA4Go1lg",
+      "fields": [
+        {
+          "id": "fldw8vmvOJA4Go1lg",
+          "name": "comment_id",
+          "type": "autoNumber"
+        },
+        {
+          "id": "fldtBSafB7ETcIdaa",
+          "name": "content",
+          "type": "multilineText"
+        },
+        {
+          "id": "fld2Y1V3n1Cb62CSc",
+          "name": "created_at",
+          "type": "createdTime"
+        },
+        {
+          "id": "flddeFspsPWlEQVML",
+          "name": "updated_at",
+          "type": "lastModifiedTime"
+        },
+        {
+          "id": "fldMEYclVCVaEOd7V",
+          "name": "post_id",
+          "type": "multipleRecordLinks",
+          "description": "Post containing this comment. Link exactly one post."
+        },
+        {
+          "id": "fldtOHBm9DLDbXW5D",
+          "name": "author_id",
+          "type": "multipleRecordLinks",
+          "description": "Student who authored this comment. Link exactly one user."
+        },
+        {
+          "id": "fldydrkqIEf1R8BDv",
+          "name": "parent_comment_id",
+          "type": "multipleRecordLinks",
+          "description": "Optional parent comment for a reply. Link at most one parent in the same post; blank for a top-level comment."
+        },
+        {
+          "id": "fldM8pZTEbkKVXu7i",
+          "name": "replies",
+          "type": "multipleRecordLinks",
+          "description": "Comments whose parent_comment_id points to this comment; maintained automatically by Airtable."
+        }
+      ],
+      "record_count": 0
+    },
+    {
+      "id": "tbl5qlq1hhscdiubc",
+      "name": "course_offerings",
+      "description": "A course section in a specific academic term taught by a professor. One community_id and prof_id per offering. Use a term such as Spring 2027 and a section such as 02. Application should enforce uniqueness of community_id + term + section.",
+      "primaryFieldId": "fldJsQDrcmUaLmPQg",
+      "fields": [
+        {
+          "id": "fldJsQDrcmUaLmPQg",
+          "name": "offering_id",
+          "type": "autoNumber"
+        },
+        {
+          "id": "fld6GSVzjIlzYCXav",
+          "name": "term",
+          "type": "singleLineText",
+          "description": "Academic term including year, e.g. Spring 2027."
+        },
+        {
+          "id": "fldwoTiMVIvRRMpjb",
+          "name": "section",
+          "type": "singleLineText",
+          "description": "Section identifier stored as text to preserve leading zeroes."
+        },
+        {
+          "id": "fld6yOpRNNA0WojRa",
+          "name": "community_id",
+          "type": "multipleRecordLinks",
+          "description": "Course community for this section. Link exactly one community."
+        },
+        {
+          "id": "fld2t3XWEqivkRfzy",
+          "name": "prof_id",
+          "type": "multipleRecordLinks",
+          "description": "Professor teaching this section. Link exactly one professor."
+        },
+        {
+          "id": "fldIJjEVCWLHIEyQH",
+          "name": "enrollments",
+          "type": "multipleRecordLinks"
+        }
+      ],
+      "record_count": 0
+    },
+    {
+      "id": "tblERthZYJOshwZpp",
+      "name": "enrollments",
+      "description": "Student enrollment in a specific course offering, separate from community membership. One user_id and offering_id per record. Application must enforce uniqueness of each user_id + offering_id pair.",
+      "primaryFieldId": "fldQVNnkKs8pQNbzn",
+      "fields": [
+        {
+          "id": "fldQVNnkKs8pQNbzn",
+          "name": "enrollment_id",
+          "type": "autoNumber"
+        },
+        {
+          "id": "fldYpgFthHfo1Zuaw",
+          "name": "user_id",
+          "type": "multipleRecordLinks",
+          "description": "Enrolled student. Link exactly one user."
+        },
+        {
+          "id": "fldpWHliDkX8mdlGD",
+          "name": "offering_id",
+          "type": "multipleRecordLinks",
+          "description": "Specific course section and term. Link exactly one offering."
+        }
+      ],
+      "record_count": 0
+    }
+  ]
+}
